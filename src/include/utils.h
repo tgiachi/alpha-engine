@@ -1,0 +1,10 @@
+//
+// Created by squid on 17/12/2021.
+//
+
+#ifndef ALPHAGAMEENGINE_UTILS_H
+#define ALPHAGAMEENGINE_UTILS_H
+
+
+
+#endif //ALPHAGAMEENGINE_UTILS_H

@@ -2,6 +2,7 @@
 // Created by tg on 17/12/21.
 //
 
+#include <spdlog/spdlog.h>
 #include "shaderClass.h"
 
 // Reads a text file and outputs a string with everything in the text file
@@ -91,7 +92,9 @@ void Shader::compileErrors(unsigned int shader, const char* type)
         if (hasCompiled == GL_FALSE)
         {
             glGetShaderInfoLog(shader, 1024, NULL, infoLog);
-            std::cout << "SHADER_COMPILATION_ERROR for:" << type << "\n" << infoLog << std::endl;
+            spdlog::error("SHADER_COMPILATION_ERROR for: {}", type);
+            spdlog::error("Error: {}", infoLog);
+
         }
     }
     else

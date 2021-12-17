@@ -3,12 +3,15 @@
 
 
 #include "glad/glad.h"
-#include <GLFW/glfw3.h>
-#include <spdlog/spdlog.h>
 
+#include <GLFW/glfw3.h>
+
+#include <spdlog/spdlog.h>
+#include "shaderClass.h"
 #include "entity.h"
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
+
 
 
 void error_callback(int error, const char *msg) {
@@ -29,6 +32,8 @@ private:
     float m_deltaTime = 0;
     float m_currentDeltaTime = 0;
 
+    void loadShaders();
+
 
 public:
     AlphaEngine(int width, int height, std::string title, int limitFps) {
@@ -44,7 +49,7 @@ public:
 
     void addEntity(Entity *entity) {
         m_entities.push_back(entity);
-        // entity->init();
+        entity->init();
     }
 };
 
@@ -57,7 +62,7 @@ bool AlphaEngine::init() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    // glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 
 
@@ -66,7 +71,7 @@ bool AlphaEngine::init() {
     if (m_window == NULL) {
         std::cout << "Failed to create GLFW window" << std::endl;
         glfwTerminate();
-        return -1;
+        return false;
     }
     glfwSetKeyCallback(m_window, [](GLFWwindow *, int, int, int, int) {});
 
@@ -99,11 +104,6 @@ void AlphaEngine::loop() {
         m_currentDeltaTime = (float) glfwGetTime();
         m_deltaTime += (m_currentDeltaTime - m_lastDeltaTime) / m_limitFps;
 
-       // glDrawElements(GL_QUADS, 24, GL_UNSIGNED_INT, nullptr);
-
-
-        glDrawElements(GL_LINES, 48, GL_UNSIGNED_INT, nullptr);
-
 
         for (auto entity: m_entities) {
             entity->processInput(m_window);
@@ -129,4 +129,9 @@ void AlphaEngine::loop() {
         /* Poll for and process events */
         glfwPollEvents();
     }
+}
+
+void AlphaEngine::loadShaders() {
+    Shader shaderProgram("default.vert", "default.frag");
+
 }
