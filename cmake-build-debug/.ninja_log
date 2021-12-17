@@ -1,0 +1,10 @@
+# ninja log v5
+2	1011	1639744453953299664	CMakeFiles/alphagameengine.dir/src/main.cpp.o	d20642531a2e5a8d
+7	515	1639744443747497313	CMakeFiles/alphagameengine.dir/src/include/shaderClass.cpp.o	8ea8f5ea0d4e3b38
+7	180	1639744443413495328	CMakeFiles/alphagameengine.dir/src/glad.c.o	62f26e79bdcf42fa
+0	11	0	clean	9aafb2616d2c0bd7
+659	754	1639734174965445442	alphagameengine	ce730734ed37f85a
+0	477	1639744463839394517	build.ninja	4188451bc2d447f8
+2	136	1639744464359346094	alphagameengine	bb95a1231742ad7
+5	955	1639745818659577955	CMakeFiles/alphagameengine.dir/src/main.cpp.o	d20642531a2e5a8d
+956	1078	1639745818780957783	alphagameengine	bb95a1231742ad7
