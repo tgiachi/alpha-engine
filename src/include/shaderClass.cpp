@@ -25,6 +25,10 @@ std::string get_file_contents(const char* filename)
 // Constructor that build the Shader Program from 2 different shaders
 Shader::Shader(const char* vertexFile, const char* fragmentFile)
 {
+
+    spdlog::info("Loading vertex shared: {}", vertexFile);
+    spdlog::info("Loading fragment shared: {}", fragmentFile);
+
     // Read vertexFile and fragmentFile and store the strings
     std::string vertexCode = get_file_contents(vertexFile);
     std::string fragmentCode = get_file_contents(fragmentFile);
@@ -96,6 +100,9 @@ void Shader::compileErrors(unsigned int shader, const char* type)
             spdlog::error("Error: {}", infoLog);
 
         }
+        else {
+            spdlog::info("{} compiled", type);
+        }
     }
     else
     {
@@ -104,6 +111,9 @@ void Shader::compileErrors(unsigned int shader, const char* type)
         {
             glGetProgramInfoLog(shader, 1024, NULL, infoLog);
             std::cout << "SHADER_LINKING_ERROR for:" << type << "\n" << infoLog << std::endl;
+        }
+        else {
+            spdlog::info("{} compiled", type);
         }
     }
 }

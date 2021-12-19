@@ -10,5 +10,4 @@ int main(int, char **) {
         engine->addEntity(cube);
         engine->loop();
     }
-    std::cout << "Hello, world!\n";
 }

@@ -10,6 +10,7 @@ find_package(glfw3 CONFIG REQUIRED)
 find_package(glm CONFIG REQUIRED)
 find_package(GLEW 2.0 REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
+find_package(glad CONFIG REQUIRED)
 
 include_directories(${HEADERS_DIRECTORY})
 enable_testing()
@@ -28,11 +29,12 @@ if (APPLE)
 endif (APPLE)
 
 
-add_executable(alphagameengine src/main.cpp src/include/entity.h src/include/entities/cube_entity.h src/include/stb_image.h src/include/shaderClass.cpp src/include/shaderClass.h src/include/glad/glad.h src/include/KHR/khrplatform.h src/glad.c)
-target_link_libraries(alphagameengine PRIVATE ${EXTRA_LIBS}  glm::glm glfw GLEW::GLEW spdlog::spdlog spdlog::spdlog_header_only)
+add_executable(alphagameengine src/main.cpp src/include/entity.h src/include/entities/cube_entity.h src/include/stb_image.h src/include/shaderClass.cpp src/include/shaderClass.h   src/include/VAO.h src/include/VBO.h src/include/VAO.cpp src/include/VBO.cpp src/include/EBO.h src/include/EBO.cpp src/include/Texture.cpp src/include/Texture.h src/include/Camera.cpp src/include/Camera.h)
+target_link_libraries(alphagameengine PRIVATE ${EXTRA_LIBS}  glm::glm glfw GLEW::GLEW glad::glad  spdlog::spdlog spdlog::spdlog_header_only)
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 include(CPack)
+
 add_custom_command(
         TARGET ${PROJECT_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory
